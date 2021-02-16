@@ -24,7 +24,7 @@ archive(){
 		*.7z)
 			cmd="7z a $1 ";;
 		*)
-			printf "\"$1\" Is not a recognized archive format.\n";;
+			printf "\"%s\" Is not a recognized archive format.\n" "$1";;
 	esac
 
 	while [ "$2" ]; do
@@ -63,7 +63,7 @@ extract(){
 			o="-d"
 			cmd="unzip $1 ";;
 		*)
-			printf "\"$1\" Is not a recognized archive format.\n";;
+			printf "\"%s\" Is not a recognized archive format.\n" "$1";;
 	esac
 
 	[ -d "$2" ] && cmd="$cmd $o $2"
@@ -72,9 +72,9 @@ extract(){
 }
 
 if [ "$1" = "archive" ]; then
-	archive $@
+	archive "$@"
 elif [ "$1" = "extract" ]; then
-	extract $@
+	extract "$@"
 else
 	usage
 fi
